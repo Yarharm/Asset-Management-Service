@@ -1,0 +1,33 @@
+class Solution {
+    public int maxBoxesInWarehouse(int[] boxes, int[] warehouse) {
+        int roomCount = warehouse.length;
+        
+        // Get room capacity
+        for(int i = 1; i < roomCount; i++) {
+            warehouse[i] = Math.min(warehouse[i], warehouse[i - 1]);
+        }
+        
+        // Get boxe DS
+        TreeMap<Integer, Integer> tmap = new TreeMap<>();
+        for(int box : boxes) {
+            tmap.put(box, tmap.getOrDefault(box, 0) + 1);
+        }
+        
+        // Calc max
+        int maxBoxes = 0;
+        for(int i = roomCount - 1; i >= 0; i--) {
+            Map.Entry<Integer, Integer> box = tmap.floorEntry(warehouse[i]);
+            if(box != null) {
+                maxBoxes++;
+                tmap.put(box.getKey(), box.getValue() - 1);
+                if(tmap.get(box.getKey()) <= 0) {
+                    tmap.remove(box.getKey());
+                }
+            }
+        }
+        
+        return maxBoxes;
+    }
+}
+
+// n*logn + w + w*logn
