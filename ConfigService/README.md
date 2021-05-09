@@ -13,3 +13,4 @@ Configuration stored under `/resources/config/{microservice}`
 
 Covered Microservices:
 - licensing-service
+- auth-service
