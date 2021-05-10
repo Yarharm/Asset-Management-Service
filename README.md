@@ -2,5 +2,9 @@
 Monorepo for the microservice based Asset Management Solution
 
 ## Microservices
-- Licensing Service
-- Config Service
+- Domain
+    - Licensing Service - license validation
+    - Authentication Service - auth validation
+- Management
+    - Config Service - config management
+    - Eureka Service - service discovery management
